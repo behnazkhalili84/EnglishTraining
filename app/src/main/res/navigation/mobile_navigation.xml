@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation"
+            app:startDestination="@+id/nav_home">
+
+    <fragment
+            android:id="@+id/nav_home"
+            android:name="com.example.englishtraining.ui.home.HomeFragment"
+            android:label="@string/menu_home"
+            tools:layout="@layout/fragment_home"/>
+
+    <fragment
+            android:id="@+id/nav_learningVocab"
+            android:name="com.example.englishtraining.ui.learningvocabulary.LearningVocabulary"
+            android:label="Learning Vocabulary"
+            tools:layout="@layout/fragment_learning_vocabulary"/>
+
+    <fragment
+            android:id="@+id/nav_learningGrammar"
+            android:name="com.example.englishtraining.ui.learningrammar.LearningGrammar"
+            android:label="Learning Grammar"
+            tools:layout="@layout/fragment_learning_grammar"/>
+    <fragment
+            android:id="@+id/nav_vocabulayquiz"
+            android:name="com.example.englishtraining.ui.vocabularyquiz.VocabularyQuiz"
+            android:label="Learning Vocabulary"
+            tools:layout="@layout/fragment_vocabulary_quiz"/>
+
+    <fragment
+            android:id="@+id/nav_grammarquizr"
+            android:name="com.example.englishtraining.ui.grammarquiz.GrammarQuiz"
+            android:label="Learning Grammar"
+            tools:layout="@layout/fragment_grammar_quiz"/>
+</navigation>
