@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.user.SignInFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+        <EditText
+                android:id="@+id/UserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="User Name"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+        <EditText
+                android:id="@+id/password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"
+                app:layout_constraintTop_toBottomOf="@+id/UserName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+        <Button
+                android:id="@+id/signInButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                app:layout_constraintTop_toBottomOf="@+id/password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="32dp" />
+
+        <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/signInButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp">
+
+            <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account?"
+                    android:textSize="16sp" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/textButtonSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign Up"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
