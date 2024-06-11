@@ -21,4 +21,9 @@
     <string name="image">image</string>
     <string name="play_audio">play_audio</string>
     <string name="submit">SUBMIT</string>
+    <string name="result">Result</string>
+    <string name="imageResult">image</string>
+    <string name="hey_congratulations">Hey, Congratulations!</string>
+    <string name="finish">FINISH</string>
+    <string name="next">NEXT</string>
 </resources>

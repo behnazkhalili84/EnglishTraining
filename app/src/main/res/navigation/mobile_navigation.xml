@@ -26,11 +26,19 @@
             android:id="@+id/nav_vocabulayquiz"
             android:name="com.example.englishtraining.ui.vocabularyquiz.VocabularyQuiz"
             android:label="Learning Vocabulary"
-            tools:layout="@layout/fragment_vocabulary_quiz"/>
+            tools:layout="@layout/fragment_vocabulary_quiz">
+        <action
+                android:id="@+id/action_nav_vocabulayquiz_to_nav_vocabularyresult"
+                app:destination="@id/nav_vocabularyresult" />
+    </fragment>
 
     <fragment
             android:id="@+id/nav_grammarquizr"
             android:name="com.example.englishtraining.ui.grammarquiz.GrammarQuiz"
             android:label="Learning Grammar"
             tools:layout="@layout/fragment_grammar_quiz"/>
+    <fragment
+            android:id="@+id/nav_vocabularyresult"
+            android:name="com.example.englishtraining.ui.resultVocabulary.ResultVocabulary"
+            tools:layout="@layout/fragment_result_vocabulary"/>
 </navigation>

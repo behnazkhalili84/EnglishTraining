@@ -1,6 +1,8 @@
 package com.example.englishtraining.ui.vocabularyquiz
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +13,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.englishtraining.R
+import com.example.englishtraining.ui.resultVocabulary.ResultVocabulary
 import com.google.android.material.button.MaterialButton
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class VocabularyQuiz : Fragment() {
+class VocabularyQuiz  : Fragment() {
 
     private val viewModel: VocabularyQuizViewModel by viewModels()
 
@@ -41,6 +45,8 @@ class VocabularyQuiz : Fragment() {
         setupUI(view)
         setupObservers()
         setupListeners()
+        // Set initial question
+        viewModel.setQuestion(0)
         return view
     }
 
@@ -54,6 +60,11 @@ class VocabularyQuiz : Fragment() {
         tvOptionThree = view.findViewById(R.id.tv_option_three)
         tvOptionFour = view.findViewById(R.id.tv_option_four)
         btnSubmit = view.findViewById(R.id.btn_submit)
+
+        // Initialize progress bar and progress text for the first question
+        progressBar.max = viewModel.questionsList.value?.size ?: 1
+        tvProgress.text = "1/${progressBar.max}"
+        progressBar.progress = 1
     }
 
     private fun setupObservers() {
@@ -99,8 +110,16 @@ class VocabularyQuiz : Fragment() {
             // Reset selected option position
             viewModel.resetSelectedOption()
             if (viewModel.currentPosition.value!! >= viewModel.questionsList.value!!.size) {
-                Toast.makeText(activity, "Quiz Completed", Toast.LENGTH_SHORT).show()
-                // Handle quiz completion logic here
+                // Use Bundle to pass data to ResultVocabulary fragment
+                val bundle = Bundle().apply {
+                    putInt(Constants.TOTAL_QUESTIONS, viewModel.questionsList.value!!.size)
+                    putInt(Constants.CORRECT_ANSWERS, viewModel.correctAnswer.value ?: 0)
+                    putString(Constants.USER_NAME, "User Name") // Replace with actual user name
+                }
+                val resultVocabularyFragment = ResultVocabulary().apply {
+                    arguments = bundle
+                }
+                fragmentManager?.beginTransaction()?.replace(R.id.nav_vocabularyresult, resultVocabularyFragment)?.commit()
             } else {
                 viewModel.setQuestion(viewModel.currentPosition.value!! + 1)
                 btnSubmit.text = if (viewModel.currentPosition.value == viewModel.questionsList.value?.size) "FINISH" else "NEXT"
@@ -108,20 +127,13 @@ class VocabularyQuiz : Fragment() {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun showAnswerFeedback(answer: Int, drawableView: Int) {
         when (answer) {
-            1 -> {
-                tvOptionOne.background = resources.getDrawable(drawableView, null)
-            }
-            2 -> {
-                tvOptionTwo.background = resources.getDrawable(drawableView, null)
-            }
-            3 -> {
-                tvOptionThree.background = resources.getDrawable(drawableView, null)
-            }
-            4 -> {
-                tvOptionFour.background = resources.getDrawable(drawableView, null)
-            }
+            1 -> tvOptionOne.background = resources.getDrawable(drawableView, null)
+            2 -> tvOptionTwo.background = resources.getDrawable(drawableView, null)
+            3 -> tvOptionThree.background = resources.getDrawable(drawableView, null)
+            4 -> tvOptionFour.background = resources.getDrawable(drawableView, null)
         }
     }
 
@@ -132,7 +144,7 @@ class VocabularyQuiz : Fragment() {
 
             tvQuestion.text = question?.question
             ivImage.setImageResource(question?.image ?: 0)
-            progressBar.progress = position
+            progressBar.progress = position + 1
             tvProgress.text = "${position + 1}/${progressBar.max}"
             tvOptionOne.text = question?.optionOne
             tvOptionTwo.text = question?.optionTwo
@@ -161,6 +173,7 @@ class VocabularyQuiz : Fragment() {
             4 -> tvOptionFour.background = resources.getDrawable(R.drawable.selected_option_border_bg, null)
         }
     }
+
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
