@@ -2,10 +2,6 @@ package com.example.englishtraining.ui.vocabularyquiz
 
 import com.example.englishtraining.R
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 object Constants {
     const val USER_NAME: String = "user_name"
     const val TOTAL_QUESTIONS: String = "total_questions"

@@ -33,11 +33,9 @@ class VocabularyQuizViewModel : ViewModel() {
     fun incrementCorrectAnswer() {
         _correctAnswer.value = (_correctAnswer.value ?: 0) + 1
     }
-<<<<<<< Updated upstream
+
 
     fun resetSelectedOption() {
         _selectedOptionPosition.value = 0
     }
-=======
->>>>>>> Stashed changes
 }
