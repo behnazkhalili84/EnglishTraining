@@ -14,8 +14,8 @@ import androidx.lifecycle.Observer
 import com.example.englishtraining.R
 import com.google.android.material.button.MaterialButton
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+const val ARG_PARAM1 = "param1"
+const val ARG_PARAM2 = "param2"
 
 class VocabularyQuiz : Fragment() {
 
