@@ -1,5 +1,6 @@
 package com.example.englishtraining.ui.user
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,9 +14,22 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.englishtraining.MainActivity
 import com.example.englishtraining.R
+import com.example.englishtraining.UserActivity
+import com.google.android.material.button.MaterialButton
 
 class SignUpFragment: Fragment() {
+    // getting userActivity reference to navigates between it's fragments
+    private var userActivity: UserActivity? = null
     private val userViewModel: UserViewModel by viewModels()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is UserActivity) {
+            userActivity = context
+        } else {
+            throw RuntimeException("$context must implement UserActivity")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,10 +41,18 @@ class SignUpFragment: Fragment() {
         val passwordEditText = view.findViewById<EditText>(R.id.password)
         val signUpButton = view.findViewById<Button>(R.id.signUpButton)
 
+        // Sign up button
         signUpButton.setOnClickListener {
             val userName = userNameEditText.text.toString()
             val password = passwordEditText.text.toString()
             userViewModel.signUp(userName, password)
+        }
+
+        // Sign in button to navigate to signin fragment
+        val textButtonSignIn = view.findViewById<MaterialButton>(R.id.textButtonSignIn)
+
+        textButtonSignIn.setOnClickListener {
+            userActivity?.showFragment(SignInFragment())
         }
 
         //Observe the login status
