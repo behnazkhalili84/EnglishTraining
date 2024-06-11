@@ -3,7 +3,7 @@ package com.example.englishtraining.dao
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "com/example/englishtraining/ui/user")
+@Entity(tableName = "users")
 data class User(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val username: String,
