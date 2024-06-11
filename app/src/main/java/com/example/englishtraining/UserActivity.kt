@@ -12,10 +12,10 @@ class UserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user)
 
         // Sign In is the default fragment
-        showFragment(SignUpFragment())
+        showFragment(SignInFragment())
     }
 
-    private fun showFragment(fragment: Fragment) {
+    fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.user_fragment_container, fragment)
             .commit()
