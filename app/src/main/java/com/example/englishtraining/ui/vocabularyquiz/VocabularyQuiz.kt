@@ -1,53 +1,167 @@
 package com.example.englishtraining.ui.vocabularyquiz
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.englishtraining.R
+import com.google.android.material.button.MaterialButton
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [VocabularyQuiz.newInstance] factory method to
- * create an instance of this fragment.
- */
 class VocabularyQuiz : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val viewModel: VocabularyQuizViewModel by viewModels()
+
+    private lateinit var tvQuestion: TextView
+    private lateinit var ivImage: ImageView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var tvProgress: TextView
+    private lateinit var tvOptionOne: TextView
+    private lateinit var tvOptionTwo: TextView
+    private lateinit var tvOptionThree: TextView
+    private lateinit var tvOptionFour: TextView
+    private lateinit var btnSubmit: MaterialButton
+
+    private var selectedOptionPosition: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vocabulary_quiz, container, false)
+        val view = inflater.inflate(R.layout.fragment_vocabulary_quiz, container, false)
+        setupUI(view)
+        setupObservers()
+        setupListeners()
+        return view
     }
 
+    private fun setupUI(view: View) {
+        tvQuestion = view.findViewById(R.id.tv_question)
+        ivImage = view.findViewById(R.id.iv_image)
+        progressBar = view.findViewById(R.id.progressBar)
+        tvProgress = view.findViewById(R.id.tv_progress)
+        tvOptionOne = view.findViewById(R.id.tv_option_one)
+        tvOptionTwo = view.findViewById(R.id.tv_option_two)
+        tvOptionThree = view.findViewById(R.id.tv_option_three)
+        tvOptionFour = view.findViewById(R.id.tv_option_four)
+        btnSubmit = view.findViewById(R.id.btn_submit)
+    }
+
+    private fun setupObservers() {
+        viewModel.currentPosition.observe(viewLifecycleOwner, Observer { position ->
+            setQuestion(position)
+        })
+
+        viewModel.selectedOptionPosition.observe(viewLifecycleOwner, Observer { position ->
+            selectedOptionPosition = position
+            resetOptionsBackground()
+            highlightSelectedOption(position)
+        })
+    }
+
+    private fun setupListeners() {
+        tvOptionOne.setOnClickListener { onOptionSelected(1) }
+        tvOptionTwo.setOnClickListener { onOptionSelected(2) }
+        tvOptionThree.setOnClickListener { onOptionSelected(3) }
+        tvOptionFour.setOnClickListener { onOptionSelected(4) }
+
+        btnSubmit.setOnClickListener { onSubmit() }
+    }
+
+    private fun onOptionSelected(option: Int) {
+        selectedOptionPosition = option
+        viewModel.selectOption(option)
+    }
+
+    private fun onSubmit() {
+        val question = viewModel.questionsList.value?.get(viewModel.currentPosition.value ?: 0)
+        if (selectedOptionPosition == 0) {
+            // No option selected, go to next question
+            viewModel.setQuestion((viewModel.currentPosition.value ?: 0) + 1)
+        } else {
+            if (question != null && selectedOptionPosition == question.correctAnswer) {
+                viewModel.incrementCorrectAnswer()
+            }
+            showAnswerFeedback(question!!.correctAnswer, R.drawable.correct_option_border_bg)
+            if (selectedOptionPosition != question.correctAnswer) {
+                showAnswerFeedback(selectedOptionPosition, R.drawable.wrong_option_border_bg)
+            }
+
+            // Reset selected option position
+            viewModel.resetSelectedOption()
+            if (viewModel.currentPosition.value!! >= viewModel.questionsList.value!!.size) {
+                Toast.makeText(activity, "Quiz Completed", Toast.LENGTH_SHORT).show()
+                // Handle quiz completion logic here
+            } else {
+                viewModel.setQuestion(viewModel.currentPosition.value!! + 1)
+                btnSubmit.text = if (viewModel.currentPosition.value == viewModel.questionsList.value?.size) "FINISH" else "NEXT"
+            }
+        }
+    }
+
+    private fun showAnswerFeedback(answer: Int, drawableView: Int) {
+        when (answer) {
+            1 -> {
+                tvOptionOne.background = resources.getDrawable(drawableView, null)
+            }
+            2 -> {
+                tvOptionTwo.background = resources.getDrawable(drawableView, null)
+            }
+            3 -> {
+                tvOptionThree.background = resources.getDrawable(drawableView, null)
+            }
+            4 -> {
+                tvOptionFour.background = resources.getDrawable(drawableView, null)
+            }
+        }
+    }
+
+    private fun setQuestion(position: Int) {
+        val questionList = viewModel.questionsList.value
+        if (position < questionList?.size ?: 0) {
+            val question = questionList?.get(position)
+
+            tvQuestion.text = question?.question
+            ivImage.setImageResource(question?.image ?: 0)
+            progressBar.progress = position
+            tvProgress.text = "${position + 1}/${progressBar.max}"
+            tvOptionOne.text = question?.optionOne
+            tvOptionTwo.text = question?.optionTwo
+            tvOptionThree.text = question?.optionThree
+            tvOptionFour.text = question?.optionFour
+
+            resetOptionsBackground()
+        } else {
+            Toast.makeText(activity, "Quiz Completed", Toast.LENGTH_SHORT).show()
+            // Handle quiz completion logic here
+        }
+    }
+
+    private fun resetOptionsBackground() {
+        tvOptionOne.background = resources.getDrawable(R.drawable.default_option_border_bg, null)
+        tvOptionTwo.background = resources.getDrawable(R.drawable.default_option_border_bg, null)
+        tvOptionThree.background = resources.getDrawable(R.drawable.default_option_border_bg, null)
+        tvOptionFour.background = resources.getDrawable(R.drawable.default_option_border_bg, null)
+    }
+
+    private fun highlightSelectedOption(position: Int) {
+        when (position) {
+            1 -> tvOptionOne.background = resources.getDrawable(R.drawable.selected_option_border_bg, null)
+            2 -> tvOptionTwo.background = resources.getDrawable(R.drawable.selected_option_border_bg, null)
+            3 -> tvOptionThree.background = resources.getDrawable(R.drawable.selected_option_border_bg, null)
+            4 -> tvOptionFour.background = resources.getDrawable(R.drawable.selected_option_border_bg, null)
+        }
+    }
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment VocabularyQuiz.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             VocabularyQuiz().apply {
