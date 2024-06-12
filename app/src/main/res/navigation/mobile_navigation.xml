@@ -25,10 +25,10 @@
     <fragment
             android:id="@+id/nav_vocabulayquiz"
             android:name="com.example.englishtraining.ui.vocabularyquiz.VocabularyQuiz"
-            android:label="Learning Vocabulary"
+            android:label="Vocabulary Quiz"
             tools:layout="@layout/fragment_vocabulary_quiz">
         <action
-                android:id="@+id/action_nav_vocabulayquiz_to_nav_vocabularyresult"
+                android:id="@+id/action_vocabularyQuiz_to_resultVocabulary"
                 app:destination="@id/nav_vocabularyresult" />
     </fragment>
 

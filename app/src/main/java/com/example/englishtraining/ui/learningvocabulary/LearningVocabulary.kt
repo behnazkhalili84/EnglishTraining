@@ -46,7 +46,7 @@ class LearningVocabulary : Fragment() {
         val view = inflater.inflate(R.layout.fragment_learning_vocabulary, container, false)
         setupUI(view)
         setupListeners()
-       setWord(0)
+//       setWord(0)
         return view
 
     }

@@ -38,6 +38,7 @@ class VocabularyQuiz : Fragment() {
     private lateinit var btnSubmit: MaterialButton
 
     private var selectedOptionPosition: Int = 0
+    private var isAnswerSubmitted = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +48,6 @@ class VocabularyQuiz : Fragment() {
         setupUI(view)
         setupObservers()
         setupListeners()
-        // Set initial question
         viewModel.setQuestion(0)
         return view
     }
@@ -63,7 +63,6 @@ class VocabularyQuiz : Fragment() {
         tvOptionFour = view.findViewById(R.id.tv_option_four)
         btnSubmit = view.findViewById(R.id.btn_submit)
 
-        // Initialize progress bar and progress text for the first question
         progressBar.max = viewModel.questionsList.value?.size ?: 1
         tvProgress.text = "1/${progressBar.max}"
         progressBar.progress = 1
@@ -71,10 +70,12 @@ class VocabularyQuiz : Fragment() {
 
     private fun setupObservers() {
         viewModel.currentPosition.observe(viewLifecycleOwner, Observer { position ->
+            Log.d("VocabularyQuiz", "Current Position: $position")
             setQuestion(position)
         })
 
         viewModel.selectedOptionPosition.observe(viewLifecycleOwner, Observer { position ->
+            Log.d("VocabularyQuiz", "Selected Option Position: $position")
             selectedOptionPosition = position
             resetOptionsBackground()
             highlightSelectedOption(position)
@@ -91,51 +92,46 @@ class VocabularyQuiz : Fragment() {
     }
 
     private fun onOptionSelected(option: Int) {
-        selectedOptionPosition = option
-        viewModel.selectOption(option)
+        if (!isAnswerSubmitted) {
+            selectedOptionPosition = option
+            Log.d("VocabularyQuiz", "Option Selected: $option")
+            viewModel.selectOption(option)
+        }
     }
 
     private fun onSubmit() {
         val question = viewModel.questionsList.value?.get(viewModel.currentPosition.value ?: 0)
-        if (selectedOptionPosition == 0) {
-            // No option selected, go to next question
-            viewModel.setQuestion((viewModel.currentPosition.value ?: 0) + 1)
-        } else {
-            if (question != null && selectedOptionPosition == question.correctAnswer) {
-                viewModel.incrementCorrectAnswer()
-            }
-            showAnswerFeedback(question!!.correctAnswer, R.drawable.correct_option_border_bg)
-            if (selectedOptionPosition != question.correctAnswer) {
-                showAnswerFeedback(selectedOptionPosition, R.drawable.wrong_option_border_bg)
-            }
-
-            // Reset selected option position
-            viewModel.resetSelectedOption()
-            if (viewModel.currentPosition.value!! >= viewModel.questionsList.value!!.size) {
-                // Use Bundle to pass data to ResultVocabulary fragment
-                val bundle = Bundle().apply {
-                    putInt(Constants.TOTAL_QUESTIONS, viewModel.questionsList.value!!.size)
-                    putInt(Constants.CORRECT_ANSWERS, viewModel.correctAnswer.value ?: 0)
-                    putString(Constants.USER_NAME, "User Name") // Replace with actual user name
-                }
-                val resultVocabularyFragment = ResultVocabulary().apply {
-                    arguments = bundle
-                }
-                fragmentManager?.beginTransaction()?.replace(R.id.nav_vocabularyresult, resultVocabularyFragment)?.commit()
+        if (!isAnswerSubmitted) {
+            if (selectedOptionPosition == 0) {
+                Toast.makeText(activity, "Please select an option", Toast.LENGTH_SHORT).show()
             } else {
-                viewModel.setQuestion(viewModel.currentPosition.value!! + 1)
+                isAnswerSubmitted = true
+                if (question != null && selectedOptionPosition == question.correctAnswer) {
+                    Log.d("VocabularyQuiz", "Correct answer selected")
+                    viewModel.incrementCorrectAnswer()
+                }
+                showAnswerFeedback(question!!.correctAnswer, R.drawable.correct_option_border_bg)
+                if (selectedOptionPosition != question.correctAnswer) {
+                    showAnswerFeedback(selectedOptionPosition, R.drawable.wrong_option_border_bg)
+                }
                 btnSubmit.text = if (viewModel.currentPosition.value == viewModel.questionsList.value?.size) "FINISH" else "NEXT"
             }
+        } else {
+            isAnswerSubmitted = false
+            viewModel.setQuestion((viewModel.currentPosition.value ?: 0) + 1)
+            btnSubmit.text = "SUBMIT"
         }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun showAnswerFeedback(answer: Int, drawableView: Int) {
+        Log.d("VocabularyQuiz", "Show Answer Feedback: answer=$answer, drawableView=$drawableView")
         when (answer) {
             1 -> tvOptionOne.background = resources.getDrawable(drawableView, null)
             2 -> tvOptionTwo.background = resources.getDrawable(drawableView, null)
             3 -> tvOptionThree.background = resources.getDrawable(drawableView, null)
             4 -> tvOptionFour.background = resources.getDrawable(drawableView, null)
+            else -> Log.e("VocabularyQuiz", "Invalid answer: $answer")
         }
     }
 
@@ -143,6 +139,8 @@ class VocabularyQuiz : Fragment() {
         val questionList = viewModel.questionsList.value
         if (position < questionList?.size ?: 0) {
             val question = questionList?.get(position)
+
+            Log.d("VocabularyQuiz", "Setting question: $question")
 
             tvQuestion.text = question?.question
             ivImage.setImageResource(question?.image ?: 0)
@@ -154,10 +152,22 @@ class VocabularyQuiz : Fragment() {
             tvOptionFour.text = question?.optionFour
 
             resetOptionsBackground()
+            btnSubmit.text = "SUBMIT"
         } else {
             Toast.makeText(activity, "Quiz Completed", Toast.LENGTH_SHORT).show()
-            // Handle quiz completion logic here
+            Log.d("VocabularyQuiz", "Quiz completed")
+            val bundle = Bundle().apply {
+                putInt(Constants.TOTAL_QUESTIONS, viewModel.questionsList.value!!.size)
+                putInt(Constants.CORRECT_ANSWERS, viewModel.correctAnswer.value ?: 0)
+                putString(Constants.USER_NAME, "User Name") // Replace with actual user name
+            }
+
+            findNavController().navigate(
+                R.id.action_vocabularyQuiz_to_resultVocabulary,
+                bundle
+            )
         }
+
     }
 
     private fun resetOptionsBackground() {
@@ -173,6 +183,7 @@ class VocabularyQuiz : Fragment() {
             2 -> tvOptionTwo.background = resources.getDrawable(R.drawable.selected_option_border_bg, null)
             3 -> tvOptionThree.background = resources.getDrawable(R.drawable.selected_option_border_bg, null)
             4 -> tvOptionFour.background = resources.getDrawable(R.drawable.selected_option_border_bg, null)
+            else -> Log.e("VocabularyQuiz", "Invalid selected option position: $position")
         }
     }
 
