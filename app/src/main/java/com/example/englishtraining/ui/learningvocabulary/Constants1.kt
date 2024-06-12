@@ -1,7 +1,6 @@
 package com.example.englishtraining.ui.learningvocabulary
 
 import com.example.englishtraining.R
-import com.example.englishtraining.ui.vocabularyquiz.VocabularyQuestion
 
 object Constants1 {
     const val USER_NAME: String = "user_name"
@@ -13,8 +12,8 @@ object Constants1 {
         val world1 = Vocabulary(
             1,"Apple",
             "Apple is a delicious fruit",
-            "R.drawable.apple",
-            "http://")
+            R.drawable.apple,
+            "En-us-apple.ogg")
          vocabularyList.add(world1)
 
 
@@ -23,8 +22,8 @@ object Constants1 {
             2,
             "Drink",
             "I like sweet drinks",
-            "R.drawable.drink",
-            "http://")
+            R.drawable.drink,
+            "En-us-drink.ogg")
 
         vocabularyList.add(world2)
 
@@ -33,8 +32,8 @@ object Constants1 {
             3,
             "Water",
             "she is thirsty, she needs water ",
-            "R.drawable.apple",
-            "http://")
+            R.drawable.water,
+            "En-us-water.ogg")
 
         vocabularyList.add(world3)
 
@@ -43,18 +42,18 @@ object Constants1 {
             4,
             "Juice",
             "I drink orange juice",
-            "R.drawable.juice",
-            "http://")
+            R.drawable.juice,
+            "En-us-juice.ogg")
 
         vocabularyList.add(world4)
 
         // 5
         val world5 = Vocabulary(
             5,
-            "Toes",
-            "My toes hurt",
-            "R.drawable.toes",
-            "http://")
+            "Toe",
+            "My toe hurts",
+            R.drawable.toes,
+            "En-us-toe.ogg")
 
         vocabularyList.add(world5)
 
@@ -63,8 +62,8 @@ object Constants1 {
             6,
             "Nose",
             "A big nose",
-            "R.drawable.nose",
-            "http://")
+            R.drawable.nose,
+            "En-us-nose.ogg")
 
         vocabularyList.add(world6)
 
@@ -73,8 +72,8 @@ object Constants1 {
             7,
             "Mouth",
             "A beautiful mouth",
-            "R.drawable.nose",
-            "http://")
+            R.drawable.mouth,
+            "En-us-mouth.ogg/")
 
         vocabularyList.add(world7)
 
@@ -82,8 +81,8 @@ object Constants1 {
         val world8 = Vocabulary(
             8,"Chair",
             "Sit down on the chair",
-            "R.drawable.apple",
-            "http://")
+            R.drawable.chair,
+            "En-us-chair.ogg")
 
         vocabularyList.add(world8)
 
@@ -98,7 +97,7 @@ object Constants1 {
             9,
             "Milk",
             "I drink milk every day",
-            "R.drawable.milk",
+            R.drawable.milk,
             "http://")
 
         vocabularyList.add(world9)
@@ -109,7 +108,7 @@ object Constants1 {
             10,
             "Sweet",
             "don't eat too much sweets",
-            "R.drawable.sweets",
+            R.drawable.sweets,
             "http://")
 
         vocabularyList.add(world10)
@@ -119,7 +118,7 @@ object Constants1 {
             11,
             "Cup",
             "I drink in my cup",
-            "R.drawable.cup",
+            R.drawable.cup,
             "http://")
 
         vocabularyList.add(world11)
@@ -129,7 +128,7 @@ object Constants1 {
             12,
             "Biscuit",
             "A chocolate biscuit",
-            "R.drawable.biscuit",
+            R.drawable.biscuit,
             "http://")
 
         vocabularyList.add(world12)
@@ -139,7 +138,7 @@ object Constants1 {
             13,
             "Mummy and baby",
             "Mummy loves her baby",
-            "R.drawable.mambaby",
+            R.drawable.mambaby,
             "http://")
 
         vocabularyList.add(world13)
@@ -149,7 +148,7 @@ object Constants1 {
             14,
             "Plate",
             "Please wash your plate",
-            "R.drawable.plate",
+            R.drawable.plate,
             "http://")
 
         vocabularyList.add(world14)
@@ -159,7 +158,7 @@ object Constants1 {
             15,
             "Table",
             "I ate at the table",
-            "R.drawable.table",
+            R.drawable.table,
             "http://")
 
         vocabularyList.add(world15)
@@ -168,7 +167,7 @@ object Constants1 {
         val world16 = Vocabulary(
             16,
             "Daddy", "I love my daddy",
-            "R.drawable.dady",
+            R.drawable.dady,
             "http://")
 
         vocabularyList.add(world16)

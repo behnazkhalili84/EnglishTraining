@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.englishtraining.R
 import com.example.englishtraining.ui.vocabularyquiz.VocabularyQuiz
 import com.google.android.material.button.MaterialButton
+import java.io.IOException
 
 
 private const val ARG_PARAM1 = "param1"
@@ -34,7 +32,7 @@ class LearningVocabulary : Fragment() {
     private lateinit var tvProgress: TextView
     private lateinit var tvWord: TextView
     private lateinit var tvexampleSentence: TextView
-    private lateinit var tvaudioUrl: TextView
+    private lateinit var tvaudioUrl: MaterialButton
 
     private lateinit var btnNext: MaterialButton
 
@@ -45,8 +43,13 @@ class LearningVocabulary : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_learning_vocabulary, container, false)
         setupUI(view)
+       setupObservers()
         setupListeners()
-//       setWord(0)
+
+//        viewModel.currentPosition.observe(viewLifecycleOwner, Observer { position ->
+//            setWord(position)
+//        })
+        viewModel.setWord(0)
         return view
 
     }
@@ -57,8 +60,20 @@ class LearningVocabulary : Fragment() {
         tvProgress = view.findViewById(R.id.tv_progress)
         tvWord = view.findViewById(R.id.tv_word)
         tvexampleSentence = view.findViewById(R.id.tv_exampleSentence)
-        tvaudioUrl = view.findViewById(R.id.tvaudioUrl)
+        tvaudioUrl = view.findViewById(R.id.btn_play_audio)
         btnNext = view.findViewById(R.id.btn_next)
+
+//        viewModel.vocabularyList.observe(viewLifecycleOwner, Observer { vocabularyList ->
+//            progressBar.max = vocabularyList?.size ?: 0
+//        })
+    }
+
+    private fun setupObservers() {
+        viewModel.currentPosition.observe(viewLifecycleOwner, Observer { position ->
+            Log.d("HAHAHA VocabularyLearning", "Current Position: $position")
+            setWord(position)
+        })
+
     }
 
     private fun setupListeners() {
@@ -76,48 +91,55 @@ class LearningVocabulary : Fragment() {
             viewModel.setWord(newPosition)
 
             // Update the button text
-            btnNext.text = if (newPosition == viewModel.vocabularyList.value?.size?.minus(1)) "FINISH" else "NEXT"
+            btnNext.text =  if (viewModel.currentPosition.value == viewModel.vocabularyList.value?.size) "FINISH" else "NEXT"
         } else {
             // Display a message indicating that the lesson is completed
             Toast.makeText(activity, "Lesson Completed", Toast.LENGTH_SHORT).show()
+            viewModel.setWord((viewModel.currentPosition.value ?: 0) + 1)
+            btnNext.text = "Next"
         }
     }
 
-    @SuppressLint("SetTextI18n")
+
     private fun setWord(position: Int) {
         val vocabularyList = viewModel.vocabularyList.value
         if (position < (vocabularyList?.size ?: 0)) {
             val word = vocabularyList?.get(position)
 
+            Log.d("LALALA VocabularyLearning", "Setting word: $word")
+
             tvWord.text = word?.word
-            ivImage.setImageResource((word?.imageRes ?: R.drawable.apple) as Int)
+            ivImage.setImageResource(word?.imageRes ?: R.drawable.apple)
             progressBar.progress = position
             tvProgress.text = "${position + 1}/${progressBar.max}"
             tvexampleSentence.text = word?.exampleSentence
             // Play audio
-            playAudio(word?.audioUrl ?: "")
+//            playAudio(word?.audioUrl ?: "")
 
 
         } else {
             Toast.makeText(activity, "Quiz Completed", Toast.LENGTH_SHORT).show()
-            // Handle quiz completion logic here
         }
     }
 
 
-
-    private fun playAudio(audioUrl: String) {
-        val mediaPlayer = MediaPlayer().apply {
-            setDataSource(audioUrl)
-            prepare()
-            start()
-        }
-        mediaPlayer.setOnCompletionListener {
-            it.release()
-        }
-    }
-
-
+//
+//    private fun playAudio(audioUrl: String) {
+//        try {
+//            val mediaPlayer = MediaPlayer().apply {
+//                setDataSource(audioUrl)
+//                prepare()
+//                start()
+//            }
+//            mediaPlayer.setOnCompletionListener {
+//                it.release()
+//            }
+//        } catch (e: IOException) {
+//            Log.e("LearningVocabulary", "Unable to create media player", e)
+//            Toast.makeText(activity, "Unable to play audio", Toast.LENGTH_SHORT).show()
+//        }
+//
+//    }
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
