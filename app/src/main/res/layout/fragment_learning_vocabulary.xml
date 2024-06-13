@@ -86,7 +86,9 @@
                 android:backgroundTint="@color/design_default_color_primary"
                 android:textColor="@android:color/white"
                 android:icon="@drawable/baseline_play_circle_outline_24"
+
                 app:iconGravity="textEnd"
+
                 android:text="@string/play_audio1"
                 android:padding="15dp"
                 android:textSize="18sp"
