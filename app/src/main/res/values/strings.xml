@@ -26,5 +26,9 @@
     <string name="hey_congratulations">Hey, Congratulations!</string>
     <string name="finish">FINISH</string>
     <string name="next">NEXT</string>
+
     <string name="play_audio1">Play Audio</string>
+
+    <string name="profile">Profile</string>
+
 </resources>

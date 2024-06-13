@@ -20,6 +20,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // retrieve username from UserActivity
+        val userName = intent.getStringExtra("USER_NAME")
+        //Bundle in Android is a way to pass data between components such as activities and fragments.
+        val bundle = Bundle()
+        bundle.putString("USER_NAME", userName)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,11 +39,17 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+        //Set the Graph with Arguments: When you set the navigation graph on the
+        // NavController and pass the Bundle, the Bundle is provided as default arguments
+        // to the starting fragment of your navigation graph.
+        navController.setGraph(R.navigation.mobile_navigation, bundle)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_learningVocab , R.id.nav_learningGrammar, R.id.nav_vocabulayquiz, R.id.nav_grammarquiz
+                R.id.nav_home, R.id.nav_learningVocab , R.id.nav_learningGrammar, R.id.nav_vocabulayquiz, R.id.nav_grammarquiz,
+                R.id.profile
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

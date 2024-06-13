@@ -24,6 +24,10 @@
                 android:id="@+id/nav_grammarquiz"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/grammar_quiz"/>
+        <item
+                android:id="@+id/profile"
+                android:icon="@drawable/ic_account_circle_24px"
+                android:title="@string/profile"/>
 
     </group>
 </menu>

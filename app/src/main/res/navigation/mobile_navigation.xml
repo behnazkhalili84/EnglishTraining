@@ -41,4 +41,10 @@
             android:id="@+id/nav_vocabularyresult"
             android:name="com.example.englishtraining.ui.resultVocabulary.ResultVocabulary"
             tools:layout="@layout/fragment_result_vocabulary"/>
+
+    <fragment
+            android:id="@+id/profile"
+            android:name="com.example.englishtraining.ui.user.ProfileFragment"
+            android:label="@string/profile"
+            tools:layout="@layout/fragment_profile"/>
 </navigation>
