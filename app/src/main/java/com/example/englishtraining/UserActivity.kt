@@ -10,7 +10,7 @@ class UserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
-
+        this.deleteDatabase("user_database")
         // Sign In is the default fragment
         showFragment(SignInFragment())
     }
