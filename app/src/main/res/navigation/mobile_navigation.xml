@@ -41,6 +41,10 @@
             android:id="@+id/nav_vocabularyresult"
             android:name="com.example.englishtraining.ui.resultVocabulary.ResultVocabulary"
             tools:layout="@layout/fragment_result_vocabulary"/>
+    <fragment
+            android:id="@+id/nav_quizVocabRep"
+            android:name="com.example.englishtraining.ui.resultreport.ResultReport"
+            tools:layout="@layout/fragment_result_report"/>
 
     <fragment
             android:id="@+id/profile"
