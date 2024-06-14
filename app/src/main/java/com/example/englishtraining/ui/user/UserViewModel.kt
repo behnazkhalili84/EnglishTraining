@@ -36,7 +36,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         loadUser()
     }
 
-    private fun loadUser() {
+    public fun loadUser() {
         viewModelScope.launch {
             val userId = securePreferencesHelper.getUserId()
             _user.postValue(userDao.getUser(userId))
