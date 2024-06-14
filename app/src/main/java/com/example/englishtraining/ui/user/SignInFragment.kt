@@ -62,7 +62,7 @@ class SignInFragment: Fragment() {
                 Toast.makeText(context, "Login Success", Toast.LENGTH_SHORT).show()
                 //navigate to MainActivity and send username
                 val intent = Intent(context, MainActivity::class.java)
-               // intent.putExtra("USER_NAME", userViewModel.user)
+                intent.putExtra("USER_NAME", userNameEditText.text.toString())
                 startActivity(intent)
             } else {
                 Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()

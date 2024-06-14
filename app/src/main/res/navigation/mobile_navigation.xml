@@ -33,14 +33,17 @@
     </fragment>
 
     <fragment
-            android:id="@+id/nav_grammarquizr"
+            android:id="@+id/nav_grammarquiz"
             android:name="com.example.englishtraining.ui.grammarquiz.GrammarQuiz"
-            android:label="Learning Grammar"
-            tools:layout="@layout/fragment_grammar_quiz"/>
+            android:label="Grammar Quiz"
+            tools:layout="@layout/fragment_grammar_quiz">
+    </fragment>
+
     <fragment
             android:id="@+id/nav_vocabularyresult"
             android:name="com.example.englishtraining.ui.resultVocabulary.ResultVocabulary"
-            tools:layout="@layout/fragment_result_vocabulary"/>
+            tools:layout="@layout/fragment_result_vocabulary">
+    </fragment>
     <fragment
             android:id="@+id/nav_quizVocabRep"
             android:name="com.example.englishtraining.ui.resultreport.ResultReport"

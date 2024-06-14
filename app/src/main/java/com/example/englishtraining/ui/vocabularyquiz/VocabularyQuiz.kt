@@ -36,6 +36,7 @@ class VocabularyQuiz : Fragment() {
     private lateinit var tvOptionThree: TextView
     private lateinit var tvOptionFour: TextView
     private lateinit var btnSubmit: MaterialButton
+    private lateinit var userName: String
 
     private var selectedOptionPosition: Int = 0
     private var isAnswerSubmitted = false
