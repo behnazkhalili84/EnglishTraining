@@ -1,6 +1,6 @@
 package com.example.englishtraining.ui.learningrammar
 
-data class Grammer (
+data class Grammar (
         val id: Int,
         val letter : String,
         val example1: String,
