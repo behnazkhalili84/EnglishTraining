@@ -9,7 +9,27 @@
             android:id="@+id/nav_home"
             android:name="com.example.englishtraining.ui.home.HomeFragment"
             android:label="@string/menu_home"
-            tools:layout="@layout/fragment_home"/>
+            tools:layout="@layout/fragment_home">
+        
+        <action
+                android:id="@+id/action_dashboardFragment_to_grammarFragment"
+                app:destination="@id/nav_learningGrammar" />
+        <action
+                android:id="@+id/action_dashboardFragment_to_vocabularyFragment"
+                app:destination="@id/nav_learningVocab" />
+        <action
+                android:id="@+id/action_dashboardFragment_to_vocabularyQuizFragment"
+                app:destination="@id/nav_vocabulayquiz" />
+        <action
+                android:id="@+id/action_dashboardFragment_to_grammarQuizFragment"
+                app:destination="@id/nav_grammarquiz" />
+        <action
+                android:id="@+id/action_dashboardFragment_to_awardFragment"
+                app:destination="@id/nav_vocabularyresult"/>
+        <action
+                android:id="@+id/action_dashboardFragment_to_calendarFragment"
+                 />
+    </fragment>
 
     <fragment
             android:id="@+id/nav_learningVocab"
