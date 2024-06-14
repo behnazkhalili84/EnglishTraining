@@ -43,10 +43,11 @@ private lateinit var viewModel: VocabularyViewModel
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_learning_vocabulary, container, false)
+
+        viewModel = ViewModelProvider(this).get(VocabularyViewModel::class.java)
         setupUI(view)
         setupListeners()
 
-        viewModel = ViewModelProvider(this).get(VocabularyViewModel::class.java)
         viewModel.setWord(0)
 
         setupObservers()
@@ -62,6 +63,10 @@ private lateinit var viewModel: VocabularyViewModel
         tvexampleSentence = view.findViewById(R.id.tv_exampleSentence)
         btnPlayAudio = view.findViewById(R.id.btn_play_audio)
         btnNext = view.findViewById(R.id.btn_next)
+
+        progressBar.max = viewModel.vocabularyList.value?.size ?: 1
+        tvProgress.text = "1/${progressBar.max}"
+        progressBar.progress = 1
 
 
     }
@@ -113,7 +118,7 @@ private lateinit var viewModel: VocabularyViewModel
 
             tvWord.text = word?.word
             ivImage.setImageResource(word?.imageRes ?: R.drawable.apple)
-            progressBar.progress = position
+            progressBar.progress = position + 1
             tvProgress.text = "${position + 1}/${progressBar.max}"
             tvexampleSentence.text = word?.exampleSentence
             // Play audio

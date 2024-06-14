@@ -42,10 +42,11 @@ class LearningGrammar : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
        val view = inflater.inflate(R.layout.fragment_learning_grammar, container, false)
+        viewModel = ViewModelProvider(this).get(GrammarViewModel::class.java)
+
         setupUI(view)
         setupListeners()
 
-        viewModel = ViewModelProvider(this).get(GrammarViewModel::class.java)
         viewModel.setLetter(0)
 
         setupObservers()
@@ -62,6 +63,10 @@ class LearningGrammar : Fragment() {
         tvExample2= view.findViewById(R.id.example2)
         tvExample3= view.findViewById(R.id.example3)
         btnNext = view.findViewById(R.id.btn_next)
+
+        progressBar.max = viewModel.grammerList.value?.size ?: 1
+        tvProgress.text = "1/${progressBar.max}"
+        progressBar.progress = 1
 
 
     }
@@ -111,7 +116,7 @@ class LearningGrammar : Fragment() {
 
             tvLetter.text = letter?.letter
             ivImage.setImageResource(letter?.imageRes ?: R.drawable.aimage)
-            progressBar.progress = position
+            progressBar.progress = position + 1
             tvProgress.text = "${position + 1}/${progressBar.max}"
             tvExample1.text = letter?.example1
             tvExample2.text = letter?.example2
