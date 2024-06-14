@@ -1,5 +1,6 @@
 package com.example.englishtraining.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.englishtraining.CalenderActivity
+import com.example.englishtraining.MainActivity
 import com.example.englishtraining.R
 import com.example.englishtraining.databinding.FragmentHomeBinding
 
@@ -56,7 +59,8 @@ class HomeFragment : Fragment() {
         }
 
         binding.calendarLayout.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_calendarFragment)
+            val intent = Intent(context, CalenderActivity::class.java)
+            startActivity(intent)
         }
         return root
     }

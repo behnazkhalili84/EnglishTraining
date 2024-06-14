@@ -26,9 +26,6 @@
         <action
                 android:id="@+id/action_dashboardFragment_to_awardFragment"
                 app:destination="@id/nav_vocabularyresult"/>
-        <action
-                android:id="@+id/action_dashboardFragment_to_calendarFragment"
-                 />
     </fragment>
 
     <fragment
@@ -74,4 +71,5 @@
             android:name="com.example.englishtraining.ui.user.ProfileFragment"
             android:label="@string/profile"
             tools:layout="@layout/fragment_profile"/>
+
 </navigation>
