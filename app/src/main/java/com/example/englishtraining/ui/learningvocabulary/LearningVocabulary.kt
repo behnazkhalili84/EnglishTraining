@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishtraining.R
@@ -24,7 +25,8 @@ private const val ARG_PARAM2 = "param2"
 
 class LearningVocabulary : Fragment() {
 
-    private val viewModel: VocabularyViewModel by viewModels()
+//    private var viewModel: VocabularyViewModel by viewModels()
+private lateinit var viewModel: VocabularyViewModel
 
 
     private lateinit var ivImage: ImageView
@@ -33,7 +35,6 @@ class LearningVocabulary : Fragment() {
     private lateinit var tvWord: TextView
     private lateinit var tvexampleSentence: TextView
     private lateinit var btnPlayAudio: MaterialButton
-
     private lateinit var btnNext: MaterialButton
 
     override fun onCreateView(
@@ -43,13 +44,12 @@ class LearningVocabulary : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_learning_vocabulary, container, false)
         setupUI(view)
-       setupObservers()
         setupListeners()
 
-//        viewModel.currentPosition.observe(viewLifecycleOwner, Observer { position ->
-//            setWord(position)
-//        })
+        viewModel = ViewModelProvider(this).get(VocabularyViewModel::class.java)
         viewModel.setWord(0)
+
+        setupObservers()
         return view
 
     }
@@ -67,6 +67,10 @@ class LearningVocabulary : Fragment() {
     }
 
     private fun setupObservers() {
+        // Check if viewModel is initialized before setting up observers
+        if (!::viewModel.isInitialized) {
+            return
+        }
         viewModel.currentPosition.observe(viewLifecycleOwner, Observer { position ->
             Log.d("VocabularyLearning", "Current Position: $position")
             setWord(position)
@@ -105,7 +109,7 @@ class LearningVocabulary : Fragment() {
         if (position < (vocabularyList?.size ?: 0)) {
             val word = vocabularyList?.get(position)
 
-            Log.d("LALALA VocabularyLearning", "Setting word: $word")
+            Log.d( " VocabularyLearning", "Setting word: $word")
 
             tvWord.text = word?.word
             ivImage.setImageResource(word?.imageRes ?: R.drawable.apple)
@@ -122,6 +126,7 @@ class LearningVocabulary : Fragment() {
     }
 
     override fun onDestroyView() {
+        viewModel.currentPosition.removeObservers(viewLifecycleOwner)
         super.onDestroyView()
         viewModel.stopAudio()
     }
