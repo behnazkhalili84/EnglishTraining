@@ -8,7 +8,7 @@
               android:background="@android:color/darker_gray">
 
     <TextView
-            android:id="@+id/userNameTextView"
+            android:id="@+id/quizTypeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"

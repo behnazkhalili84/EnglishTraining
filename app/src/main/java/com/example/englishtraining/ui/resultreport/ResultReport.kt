@@ -51,17 +51,13 @@ class ResultReport : Fragment() {
 
     private fun createQuizResultView(quizResult: QuizResult): View {
         val view = LayoutInflater.from(context).inflate(R.layout.item_quiz_result, resultContainer, false)
-        val userNameTextView: TextView = view.findViewById(R.id.userNameTextView)
+//        val userNameTextView: TextView = view.findViewById(R.id.userNameTextView)
+        val quizTypeTextView: TextView = view.findViewById(R.id.quizTypeTextView)
         val totalQuestionsTextView: TextView = view.findViewById(R.id.totalQuestionsTextView)
         val correctAnswersTextView: TextView = view.findViewById(R.id.correctAnswersTextView)
         val dateOfQuizTextView: TextView = view.findViewById(R.id.dateOfQuizTextView)
-        userViewModel.loadUser()
-        userViewModel.user.observe(viewLifecycleOwner, Observer { user ->
-            userNameTextView.setText(user?.username)
-        })
 
-//        userNameTextView.text = quizResult.userName
-        Log.d("USER_NAME", "USER_NAME: $userNameTextView")
+        quizTypeTextView.text = "Quiz Type: ${quizResult.quizType}"
         totalQuestionsTextView.text = "Total Questions: ${quizResult.totalQuestions}"
         correctAnswersTextView.text = "Correct Answers: ${quizResult.correctAnswers}"
         dateOfQuizTextView.text = "Date: ${quizResult.dateOfQuiz}"

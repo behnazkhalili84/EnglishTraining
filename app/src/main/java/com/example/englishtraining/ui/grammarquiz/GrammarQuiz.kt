@@ -164,7 +164,7 @@ class GrammarQuiz: Fragment() {
             }
 
             findNavController().navigate(
-                R.id.action_vocabularyQuiz_to_resultVocabulary,
+                R.id.action_grammarQuiz_to_resultGrammar,
                 bundle
             )
         }

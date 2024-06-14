@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "quiz_results")
 data class QuizResult(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val userName: String,
+    val userId: Int,
+    val quizType: String,
     val totalQuestions: Int,
     val correctAnswers: Int,
     val dateOfQuiz: String

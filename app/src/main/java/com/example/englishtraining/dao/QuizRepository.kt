@@ -11,8 +11,8 @@ class QuizRepository(private val quizResultDao: QuizResultDao, context: Context)
 
     val allResults: LiveData<List<QuizResult>> = quizResultDao.getAllResults(userId)
 
-    suspend fun insertResult(username: String, score: Int, totalQuestions: Int) {
-        val result = QuizResult(id = 0, username, score, totalQuestions, 20241010.toString())
+    suspend fun insertResult(userId: Int,quizType :String, score: Int, totalQuestions: Int) {
+        val result = QuizResult(id = 0, userId = userId,quizType, score, totalQuestions, 20241010.toString())
         quizResultDao.insertResult(result)
     }
 }

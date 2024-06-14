@@ -57,6 +57,9 @@
             android:name="com.example.englishtraining.ui.grammarquiz.GrammarQuiz"
             android:label="Grammar Quiz"
             tools:layout="@layout/fragment_grammar_quiz">
+        <action
+                android:id="@+id/action_grammarQuiz_to_resultGrammar"
+                app:destination="@id/nav_grammaryresult" />
     </fragment>
 
     <fragment
@@ -64,6 +67,12 @@
             android:name="com.example.englishtraining.ui.resultVocabulary.ResultVocabulary"
             tools:layout="@layout/fragment_result_vocabulary">
     </fragment>
+    <fragment
+            android:id="@+id/nav_grammaryresult"
+            android:name="com.example.englishtraining.ui.resultGrammar.ResultGrammar"
+            tools:layout="@layout/fragment_result_grammar">
+    </fragment>
+
     <fragment
             android:id="@+id/nav_quizVocabRep"
             android:name="com.example.englishtraining.ui.resultreport.ResultReport"

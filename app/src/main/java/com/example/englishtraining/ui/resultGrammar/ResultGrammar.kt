@@ -1,4 +1,4 @@
-package com.example.englishtraining.ui.resultVocabulary
+package com.example.englishtraining.ui.resultGrammar
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,14 +14,13 @@ import androidx.lifecycle.lifecycleScope
 import com.example.englishtraining.MainActivity
 import com.example.englishtraining.R
 import com.example.englishtraining.SecurePreferencesHelper
-import com.example.englishtraining.dao.QuizRepository
 import com.example.englishtraining.dao.QuizResult
-import com.example.englishtraining.dao.QuizResultDao
+import com.example.englishtraining.ui.resultVocabulary.ResultVocabulary
 import com.example.englishtraining.ui.user.UserViewModel
 import com.example.englishtraining.ui.vocabularyquiz.Constants
 import kotlinx.coroutines.launch
 
-class ResultVocabulary : Fragment() {
+class ResultGrammar : Fragment() {
 
     private lateinit var tvScore: TextView
     private lateinit var tvName: TextView
@@ -32,7 +31,7 @@ class ResultVocabulary : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_result_vocabulary, container, false)
+        val view = inflater.inflate(R.layout.fragment_result_grammar, container, false)
 
         tvName = view.findViewById(R.id.tv_name)
         tvScore = view.findViewById(R.id.tv_score)
@@ -55,7 +54,7 @@ class ResultVocabulary : Fragment() {
                 Log.d("VocabularyScore", "Score question: $score")
                 val newQuizResult = QuizResult(
                     userId = userId,
-                    quizType = "Vocabulary Quiz",
+                    quizType = "Grammar Quiz",
                     totalQuestions = totalQuestions,
                     correctAnswers = score,
                     dateOfQuiz = "20241011"
@@ -64,11 +63,10 @@ class ResultVocabulary : Fragment() {
                     userViewModel.quizResultDao.insertResult(newQuizResult)
                     Log.d("VocabularyScore", "Inserted result: $newQuizResult")
                 } catch (e: Exception) {
-                     Log.e("VocabularyScore", "Error inserting result: ${e.message}")
-        }
+                    Log.e("VocabularyScore", "Error inserting result: ${e.message}")
+                }
 
             }
-
             startActivity(Intent(activity, MainActivity::class.java))
             activity?.finish()
         }
@@ -77,8 +75,8 @@ class ResultVocabulary : Fragment() {
     }
 
     companion object {
-        fun newInstance(userName: String, totalQuestions: Int, correctAnswers: Int): ResultVocabulary {
-            return ResultVocabulary().apply {
+        fun newInstance(userName: String, totalQuestions: Int, correctAnswers: Int): ResultGrammar {
+            return ResultGrammar().apply {
                 arguments = Bundle().apply {
                     putString(Constants.USER_NAME, userName)
                     putInt(Constants.TOTAL_QUESTIONS, totalQuestions)
