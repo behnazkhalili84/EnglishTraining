@@ -13,7 +13,7 @@ object ConstantsGrammar {
         // 1
         val que1 = GrammarQuestion(
             1, "What is this?",
-            R.drawable.apple,
+            R.drawable.aimage,
             "D", "B",
             "C", "A", 4
         )
@@ -23,7 +23,7 @@ object ConstantsGrammar {
         // 2
         val que2 = GrammarQuestion(
             2, "What is this?",
-            R.drawable.water,
+            R.drawable.bimage,
             "C", "B",
             "A", "D", 2
         )
@@ -33,7 +33,7 @@ object ConstantsGrammar {
         // 3
         val que3 = GrammarQuestion(
             3, "What is this?",
-            R.drawable.juice,
+            R.drawable.cimage,
             "B", "A",
             "C", "D", 3
         )
@@ -43,7 +43,7 @@ object ConstantsGrammar {
         // 4
         val que4 = GrammarQuestion(
             4, "What is this?",
-            R.drawable.drink,
+            R.drawable.dimage,
             "B", "A",
             "C", "D", 4
         )
@@ -53,7 +53,7 @@ object ConstantsGrammar {
         // 5
         val que5 = GrammarQuestion(
             5, "What is this?",
-            R.drawable.toes,
+            R.drawable.eimage,
             "D", "E",
             "C", "A", 2
         )
@@ -63,7 +63,7 @@ object ConstantsGrammar {
         // 6
         val que6 = GrammarQuestion(
             6, "What is this?",
-            R.drawable.nose,
+            R.drawable.fimage,
             "E", "F",
             "C", "D", 2
         )
@@ -73,7 +73,7 @@ object ConstantsGrammar {
         // 7
         val que7 = GrammarQuestion(
             7, "What is this?",
-            R.drawable.mouth,
+            R.drawable.gimage1,
             "F", "B",
             "G", "E", 3
         )
@@ -83,7 +83,7 @@ object ConstantsGrammar {
         // 8
         val que8 = GrammarQuestion(
             8, "What is this?",
-            R.drawable.chair,
+            R.drawable.himage,
             "F", "H",
             "G", "E", 2
         )

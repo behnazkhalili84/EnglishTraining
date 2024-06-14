@@ -10,7 +10,7 @@
             android:name="com.example.englishtraining.ui.home.HomeFragment"
             android:label="@string/menu_home"
             tools:layout="@layout/fragment_home">
-        
+
         <action
                 android:id="@+id/action_dashboardFragment_to_grammarFragment"
                 app:destination="@id/nav_learningGrammar" />
