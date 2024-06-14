@@ -31,5 +31,7 @@
 
     <string name="profile">Profile</string>
     <string name="vocabulary_report">Vocabulary Report</string>
+    <string name="profile_image">profile_image</string>
+    <string name="SignOut">Sign Out</string>
 
 </resources>

@@ -33,6 +33,10 @@
                 android:id="@+id/profile"
                 android:icon="@drawable/ic_account_circle_24px"
                 android:title="@string/profile"/>
+        <item
+                android:id="@+id/signout"
+                android:icon="@drawable/ic_logout_24px"
+                android:title="@string/SignOut"/>
 
     </group>
 </menu>

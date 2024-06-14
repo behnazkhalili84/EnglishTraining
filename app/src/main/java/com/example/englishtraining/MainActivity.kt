@@ -1,22 +1,24 @@
 package com.example.englishtraining
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import androidx.navigation.ui.*
 import com.example.englishtraining.databinding.ActivityMainBinding
 import com.example.englishtraining.ui.vocabularyquiz.Constants
+import com.example.englishtraining.ui.user.UserViewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private val userViewModel: UserViewModel by viewModels()
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -54,6 +56,26 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //Sign out
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.signout -> {
+                    // Sign out the user
+                    userViewModel.signOut()
+                    // Navigate to the sign-in or welcome activity
+                    val intent = Intent(this, UserActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
+                else -> {
+                    menuItem.onNavDestinationSelected(navController)
+                    drawerLayout.closeDrawer(navView)
+                    true
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

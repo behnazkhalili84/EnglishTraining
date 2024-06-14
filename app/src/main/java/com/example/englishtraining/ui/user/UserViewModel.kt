@@ -71,6 +71,11 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun signOut() {
+        securePreferencesHelper.clearUserId()
+        _user.postValue(null)
+    }
+
     fun updateUser(updatedUsername: String, updatedPassword: String) {
         viewModelScope.launch {
             val userId = securePreferencesHelper.getUserId()
