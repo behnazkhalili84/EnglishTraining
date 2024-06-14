@@ -87,7 +87,7 @@ object Constants2 {
                 R.drawable.gimage1,
                 R.raw.g
             )
-            grammarList.add(letter3)
+            grammarList.add(letter7)
 
             // 8
             val letter8 = Grammar(
@@ -98,7 +98,7 @@ object Constants2 {
                 R.drawable.himage,
                 R.raw.h
             )
-            grammarList.add(letter3)
+            grammarList.add(letter8)
 
             return grammarList
 
