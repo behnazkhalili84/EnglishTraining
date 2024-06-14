@@ -13,7 +13,7 @@ object Constants1 {
             1,"Apple",
             "Apple is a delicious fruit",
             R.drawable.apple,
-            "En-us-apple.ogg")
+            R.raw.apple)
          vocabularyList.add(world1)
 
 
@@ -23,7 +23,7 @@ object Constants1 {
             "Drink",
             "I like sweet drinks",
             R.drawable.drink,
-            "En-us-drink.ogg")
+            R.raw.drink)
 
         vocabularyList.add(world2)
 
@@ -33,7 +33,7 @@ object Constants1 {
             "Water",
             "she is thirsty, she needs water ",
             R.drawable.water,
-            "En-us-water.ogg")
+            R.raw.water)
 
         vocabularyList.add(world3)
 
@@ -43,7 +43,7 @@ object Constants1 {
             "Juice",
             "I drink orange juice",
             R.drawable.juice,
-            "En-us-juice.ogg")
+            R.raw.juice)
 
         vocabularyList.add(world4)
 
@@ -53,7 +53,7 @@ object Constants1 {
             "Toe",
             "My toe hurts",
             R.drawable.toes,
-            "En-us-toe.ogg")
+            R.raw.toe)
 
         vocabularyList.add(world5)
 
@@ -63,7 +63,7 @@ object Constants1 {
             "Nose",
             "A big nose",
             R.drawable.nose,
-            "En-us-nose.ogg")
+            R.raw.nose)
 
         vocabularyList.add(world6)
 
@@ -73,7 +73,7 @@ object Constants1 {
             "Mouth",
             "A beautiful mouth",
             R.drawable.mouth,
-            "En-us-mouth.ogg/")
+            R.raw.mouth)
 
         vocabularyList.add(world7)
 
@@ -82,7 +82,7 @@ object Constants1 {
             8,"Chair",
             "Sit down on the chair",
             R.drawable.chair,
-            "En-us-chair.ogg")
+            R.raw.chair)
 
         vocabularyList.add(world8)
 
@@ -98,7 +98,7 @@ object Constants1 {
             "Milk",
             "I drink milk every day",
             R.drawable.milk,
-            "http://")
+            9)
 
         vocabularyList.add(world9)
 
@@ -109,7 +109,7 @@ object Constants1 {
             "Sweet",
             "don't eat too much sweets",
             R.drawable.sweets,
-            "http://")
+            10)
 
         vocabularyList.add(world10)
 
@@ -119,7 +119,7 @@ object Constants1 {
             "Cup",
             "I drink in my cup",
             R.drawable.cup,
-            "http://")
+            11)
 
         vocabularyList.add(world11)
 
@@ -129,7 +129,7 @@ object Constants1 {
             "Biscuit",
             "A chocolate biscuit",
             R.drawable.biscuit,
-            "http://")
+            12)
 
         vocabularyList.add(world12)
 
@@ -139,7 +139,7 @@ object Constants1 {
             "Mummy and baby",
             "Mummy loves her baby",
             R.drawable.mambaby,
-            "http://")
+            13)
 
         vocabularyList.add(world13)
 
@@ -149,7 +149,7 @@ object Constants1 {
             "Plate",
             "Please wash your plate",
             R.drawable.plate,
-            "http://")
+            14)
 
         vocabularyList.add(world14)
 
@@ -159,7 +159,7 @@ object Constants1 {
             "Table",
             "I ate at the table",
             R.drawable.table,
-            "http://")
+            15)
 
         vocabularyList.add(world15)
 
@@ -168,7 +168,7 @@ object Constants1 {
             16,
             "Daddy", "I love my daddy",
             R.drawable.dady,
-            "http://")
+            16)
 
         vocabularyList.add(world16)
 

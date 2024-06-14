@@ -5,5 +5,5 @@ data class Vocabulary(
     val word: String,
     val exampleSentence: String,
     val imageRes: Int,
-    val audioUrl: String
+    val audioUrl: Int
 )

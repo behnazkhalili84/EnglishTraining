@@ -32,7 +32,7 @@ class LearningVocabulary : Fragment() {
     private lateinit var tvProgress: TextView
     private lateinit var tvWord: TextView
     private lateinit var tvexampleSentence: TextView
-    private lateinit var tvaudioUrl: MaterialButton
+    private lateinit var btnPlayAudio: MaterialButton
 
     private lateinit var btnNext: MaterialButton
 
@@ -60,17 +60,15 @@ class LearningVocabulary : Fragment() {
         tvProgress = view.findViewById(R.id.tv_progress)
         tvWord = view.findViewById(R.id.tv_word)
         tvexampleSentence = view.findViewById(R.id.tv_exampleSentence)
-        tvaudioUrl = view.findViewById(R.id.btn_play_audio)
+        btnPlayAudio = view.findViewById(R.id.btn_play_audio)
         btnNext = view.findViewById(R.id.btn_next)
 
-//        viewModel.vocabularyList.observe(viewLifecycleOwner, Observer { vocabularyList ->
-//            progressBar.max = vocabularyList?.size ?: 0
-//        })
+
     }
 
     private fun setupObservers() {
         viewModel.currentPosition.observe(viewLifecycleOwner, Observer { position ->
-            Log.d("HAHAHA VocabularyLearning", "Current Position: $position")
+            Log.d("VocabularyLearning", "Current Position: $position")
             setWord(position)
         })
 
@@ -79,6 +77,7 @@ class LearningVocabulary : Fragment() {
     private fun setupListeners() {
 
         btnNext.setOnClickListener { onNext() }
+        btnPlayAudio.setOnClickListener { viewModel.playAudio() }
     }
 
     private fun onNext() {
@@ -122,24 +121,11 @@ class LearningVocabulary : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.stopAudio()
+    }
 
-//
-//    private fun playAudio(audioUrl: String) {
-//        try {
-//            val mediaPlayer = MediaPlayer().apply {
-//                setDataSource(audioUrl)
-//                prepare()
-//                start()
-//            }
-//            mediaPlayer.setOnCompletionListener {
-//                it.release()
-//            }
-//        } catch (e: IOException) {
-//            Log.e("LearningVocabulary", "Unable to create media player", e)
-//            Toast.makeText(activity, "Unable to play audio", Toast.LENGTH_SHORT).show()
-//        }
-//
-//    }
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
