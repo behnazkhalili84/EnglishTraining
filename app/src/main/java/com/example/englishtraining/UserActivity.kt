@@ -12,7 +12,7 @@ class UserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user)
 
 
-        this.deleteDatabase("user_database")
+//        this.deleteDatabase("user_database")
 
         // Sign In is the default fragment
         showFragment(SignInFragment())
