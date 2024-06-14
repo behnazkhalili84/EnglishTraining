@@ -24,6 +24,19 @@
                 android:id="@+id/nav_grammarquiz"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/grammar_quiz"/>
+        <item
+                android:id="@+id/nav_quizVocabRep"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/vocabulary_report"/>
+
+        <item
+                android:id="@+id/profile"
+                android:icon="@drawable/ic_account_circle_24px"
+                android:title="@string/profile"/>
+        <item
+                android:id="@+id/signout"
+                android:icon="@drawable/ic_logout_24px"
+                android:title="@string/SignOut"/>
 
     </group>
 </menu>

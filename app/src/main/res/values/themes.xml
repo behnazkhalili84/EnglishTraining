@@ -12,10 +12,14 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <!-- Default text color -->
+        <item name="android:textColor">@color/dark_blue</item>
     </style>
     <style name="Theme.EnglishTraining.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <!-- Default text color -->
+        <item name="android:textColor">@color/dark_blue</item>
     </style>
     <style name="Theme.EnglishTraining.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="Theme.EnglishTraining.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>

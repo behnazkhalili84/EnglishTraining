@@ -8,7 +8,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
             tools:context=".MainActivity">
 
     <LinearLayout
@@ -85,14 +85,9 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/design_default_color_primary"
                 android:textColor="@android:color/white"
-                android:icon="@drawable/baseline_play_circle_outline_24"
-                android:text="@string/play_audio1"
-                android:padding="15dp"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:icon="@drawable/baseline_play_circle_outline_24">
 
-
-
+        </com.google.android.material.button.MaterialButton>
 
 
         <Button

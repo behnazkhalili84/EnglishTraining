@@ -3,8 +3,10 @@ package com.example.englishtraining.ui.resultVocabulary
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.englishtraining.dao.QuizResultDao
 
 class ResultVocabularyModelView  : ViewModel() {
+    lateinit var quizResultDao: QuizResultDao
     private val _correctAnswers = MutableLiveData<Int>()
     val correctAnswers: LiveData<Int> get() = _correctAnswers
 

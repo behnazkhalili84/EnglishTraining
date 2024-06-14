@@ -61,6 +61,7 @@ class SignUpFragment: Fragment() {
                 Toast.makeText(context, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                 //navigate to MainActivity
                 val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra("USER_NAME", userNameEditText.text.toString())
                 startActivity(intent)
             } else {
                 Toast.makeText(context, "Sign Up Failed", Toast.LENGTH_SHORT).show()

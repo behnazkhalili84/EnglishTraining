@@ -30,7 +30,8 @@ class HomeFragment : Fragment() {
 
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+            val username = arguments?.getString("USER_NAME")
+            textView.text = username + "'s " + it
         }
         return root
     }

@@ -1,91 +1,91 @@
-package com.example.englishtraining.ui.vocabularyquiz
+package com.example.englishtraining.ui.grammarquiz
 
 import com.example.englishtraining.R
 
-object Constants {
+object ConstantsGrammar {
     const val USER_NAME: String = "user_name"
     const val TOTAL_QUESTIONS: String = "total_questions"
     const val CORRECT_ANSWERS: String = "correct_answers"
 
-    fun getQuestions(): ArrayList<VocabularyQuestion> {
-        val questionsList = ArrayList<VocabularyQuestion>()
+    fun getQuestions(): ArrayList<GrammarQuestion> {
+        val questionsList = ArrayList<GrammarQuestion>()
 
         // 1
-        val que1 = VocabularyQuestion(
+        val que1 = GrammarQuestion(
             1, "What is this?",
             R.drawable.apple,
-            "drink", "water",
-            "apple", "nose", 3
+            "D", "B",
+            "C", "A", 4
         )
 
         questionsList.add(que1)
 
         // 2
-        val que2 = VocabularyQuestion(
+        val que2 = GrammarQuestion(
             2, "What is this?",
             R.drawable.water,
-            "juice", "water",
-            "apple", "nose", 2
+            "C", "B",
+            "A", "D", 2
         )
 
         questionsList.add(que2)
 
         // 3
-        val que3 = VocabularyQuestion(
+        val que3 = GrammarQuestion(
             3, "What is this?",
             R.drawable.juice,
-            "juice", "water",
-            "apple", "nose", 1
+            "B", "A",
+            "C", "D", 3
         )
 
         questionsList.add(que3)
 
         // 4
-        val que4 = VocabularyQuestion(
+        val que4 = GrammarQuestion(
             4, "What is this?",
             R.drawable.drink,
-            "juice", "water",
-            "drink", "nose", 3
+            "B", "A",
+            "C", "D", 4
         )
 
         questionsList.add(que4)
 
         // 5
-        val que5 = VocabularyQuestion(
+        val que5 = GrammarQuestion(
             5, "What is this?",
             R.drawable.toes,
-            "Toes", "water",
-            "drink", "nose", 1
+            "D", "E",
+            "C", "A", 2
         )
 
         questionsList.add(que5)
 
         // 6
-        val que6 = VocabularyQuestion(
+        val que6 = GrammarQuestion(
             6, "What is this?",
             R.drawable.nose,
-            "Noes", "Toes",
-            "water", "drink", 1
+            "E", "F",
+            "C", "D", 2
         )
 
         questionsList.add(que6)
 
         // 7
-        val que7 = VocabularyQuestion(
+        val que7 = GrammarQuestion(
             7, "What is this?",
             R.drawable.mouth,
-            "Noes", "Toes",
-            "Mouth", "drink", 3
+            "F", "B",
+            "G", "E", 3
         )
 
         questionsList.add(que7)
 
         // 8
-        val que8 = VocabularyQuestion(
+        val que8 = GrammarQuestion(
             8, "What is this?",
             R.drawable.chair,
-            "Noes", "Toes",
-            "Mouth", "Chair", 4
+            "F", "H",
+            "G", "E", 2
         )
 
         questionsList.add(que8)
