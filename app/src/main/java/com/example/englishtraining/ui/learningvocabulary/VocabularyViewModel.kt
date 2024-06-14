@@ -19,6 +19,7 @@ class VocabularyViewModel (application: Application): AndroidViewModel(applicati
     private val applicationContext: Context = application.applicationContext
 
     init {
+
         // Initialize vocabulary list here using Constants1 object
         _vocabularyList.value = Constants1.getVocabulary1()
     }
