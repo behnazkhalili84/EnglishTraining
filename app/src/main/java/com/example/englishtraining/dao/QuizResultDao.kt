@@ -11,6 +11,6 @@ interface QuizResultDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertResult(result: QuizResult)
 
-    @Query("SELECT * FROM quiz_results WHERE id = :userId")
+    @Query("SELECT * FROM quiz_results WHERE userId = :userId")
     fun getAllResults(userId: Int): LiveData<List<QuizResult>>
 }

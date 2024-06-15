@@ -1,6 +1,7 @@
 package com.example.englishtraining.ui.user
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.room.Room
 
@@ -11,6 +12,7 @@ import com.example.englishtraining.SecurePreferencesHelper
 import com.example.englishtraining.dao.User
 import com.example.englishtraining.dao.UserDao
 import com.example.englishtraining.dao.UserDatabase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application): AndroidViewModel(application) {

@@ -36,8 +36,17 @@ class ResultReport : Fragment() {
         val securePreferencesHelper = SecurePreferencesHelper(context)
         val userId = securePreferencesHelper.getUserId()
         Log.d("USER_ID", "User ID: $userId")
+
+        // Observe the quiz results
         userViewModel.quizResultDao.getAllResults(userId).observe(viewLifecycleOwner, Observer { quizResults ->
-            quizResults?.let { displayQuizResults(it) }
+            Log.d("ResultReportFragment", "Number of quiz results: ${quizResults.size}")
+            Log.d("ResultReportFragment", "Observed quiz results: $quizResults")
+            quizResults?.let {
+                for (result in it) {
+                    Log.d("ResultReportFragment", "Result: $result")
+                }
+                displayQuizResults(it)
+            }
         })
     }
 

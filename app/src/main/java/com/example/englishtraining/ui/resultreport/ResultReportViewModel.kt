@@ -9,15 +9,19 @@ import com.example.englishtraining.SecurePreferencesHelper
 import com.example.englishtraining.dao.QuizResult
 import com.example.englishtraining.ui.user.UserViewModel
 
-class ResultReportViewModel(application: Application, private val userViewModel: UserViewModel) : AndroidViewModel(application) {
-    val securePreferencesHelper = SecurePreferencesHelper(application.applicationContext)
-    val userId = securePreferencesHelper.getUserId()
+class ResultReportViewModel(application: Application) : AndroidViewModel(application) {
+    private val securePreferencesHelper = SecurePreferencesHelper(application.applicationContext)
+    private val userId = securePreferencesHelper.getUserId()
 
-    val allQuizResults: LiveData<List<QuizResult>> = userViewModel.quizResultDao.getAllResults(userId)
+    val allQuizResults: LiveData<List<QuizResult>> = UserViewModel(application).quizResultDao.getAllResults(userId)
+
     init {
         Log.d("ResultReportViewModel", "UserId: $userId")
-        allQuizResults.observeForever {
-            Log.d("ResultReportViewModel", "All quiz results changed: $it")
+        allQuizResults.observeForever { quizResults ->
+            Log.d("ResultReportViewModel", "All quiz results changed: $quizResults")
+            quizResults?.forEach { result ->
+                Log.d("ResultReportViewModel", "QuizResult: $result")
+            }
         }
     }
 }
