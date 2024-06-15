@@ -1,6 +1,7 @@
 package com.example.englishtraining.ui.resultVocabulary
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.englishtraining.MainActivity
@@ -20,6 +22,7 @@ import com.example.englishtraining.dao.QuizResultDao
 import com.example.englishtraining.ui.user.UserViewModel
 import com.example.englishtraining.ui.vocabularyquiz.Constants
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 class ResultVocabulary : Fragment() {
 
@@ -28,6 +31,7 @@ class ResultVocabulary : Fragment() {
     private lateinit var btnFinish: Button
     private val userViewModel: UserViewModel by activityViewModels()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +54,7 @@ class ResultVocabulary : Fragment() {
         btnFinish.setOnClickListener {
             val username = tvName.text.toString()
             val score = correctAnswers
+            val currentDate = LocalDate.now().toString()
 
             lifecycleScope.launch {
                 Log.d("VocabularyScore", "Score question: $score")
@@ -58,7 +63,7 @@ class ResultVocabulary : Fragment() {
                     quizType = "Vocabulary Quiz",
                     totalQuestions = totalQuestions,
                     correctAnswers = score,
-                    dateOfQuiz = "20241011"
+                    dateOfQuiz = currentDate
                 )
                 try {
                     userViewModel.quizResultDao.insertResult(newQuizResult)

@@ -27,7 +27,7 @@
         <item
                 android:id="@+id/nav_quizVocabRep"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="@string/vocabulary_report"/>
+                android:title="@string/quiz_report"/>
 
         <item
                 android:id="@+id/profile"
