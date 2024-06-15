@@ -11,7 +11,7 @@ class GrammarViewModel (application: Application): AndroidViewModel(application)
 
     private val _grammarList = MutableLiveData<List<Grammar>>()
     val grammerList: MutableLiveData<List<Grammar>> get() = _grammarList
-    private var mediaPlayer: MediaPlayer? = null
+    var mediaPlayer: MediaPlayer? = null
     private val applicationContext: Context = application.applicationContext
 
     init {

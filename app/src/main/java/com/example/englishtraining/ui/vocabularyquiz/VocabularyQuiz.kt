@@ -99,11 +99,14 @@ class VocabularyQuiz : Fragment() {
             viewModel.selectOption(option)
         }
     }
-
+    private fun resetSelectedOption() {
+        selectedOptionPosition = 0
+    }
     private fun onSubmit() {
         val question = viewModel.questionsList.value?.get(viewModel.currentPosition.value ?: 0)
         if (!isAnswerSubmitted) {
             if (selectedOptionPosition == 0) {
+                Log.d("VocabularyQuiz", "No option selected")
                 Toast.makeText(activity, "Please select an option", Toast.LENGTH_SHORT).show()
             } else {
                 isAnswerSubmitted = true
@@ -116,13 +119,23 @@ class VocabularyQuiz : Fragment() {
                     showAnswerFeedback(selectedOptionPosition, R.drawable.wrong_option_border_bg)
                 }
                 btnSubmit.text = if (viewModel.currentPosition.value == viewModel.questionsList.value?.size) "FINISH" else "NEXT"
+
             }
         } else {
-            isAnswerSubmitted = false
-            viewModel.setQuestion((viewModel.currentPosition.value ?: 0) + 1)
-            btnSubmit.text = "SUBMIT"
+            if (selectedOptionPosition == 0) {
+                Log.d("VocabularyQuiz", "No option selected")
+                Toast.makeText(activity, "Please select an option", Toast.LENGTH_SHORT).show()
+            } else {
+                isAnswerSubmitted = false
+                viewModel.setQuestion((viewModel.currentPosition.value ?: 0) + 1)
+                btnSubmit.text = "SUBMIT"
+                resetSelectedOption()
+            }
         }
     }
+
+
+
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun showAnswerFeedback(answer: Int, drawableView: Int) {
@@ -154,6 +167,7 @@ class VocabularyQuiz : Fragment() {
 
             resetOptionsBackground()
             btnSubmit.text = "SUBMIT"
+
         } else {
             Toast.makeText(activity, "Quiz Completed", Toast.LENGTH_SHORT).show()
             Log.d("VocabularyQuiz", "Quiz completed")
@@ -177,6 +191,7 @@ class VocabularyQuiz : Fragment() {
         tvOptionThree.background = resources.getDrawable(R.drawable.default_option_border_bg, null)
         tvOptionFour.background = resources.getDrawable(R.drawable.default_option_border_bg, null)
     }
+
 
     private fun highlightSelectedOption(position: Int) {
         when (position) {
