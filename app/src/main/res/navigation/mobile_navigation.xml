@@ -81,4 +81,12 @@
             android:label="@string/profile"
             tools:layout="@layout/fragment_profile"/>
 
+    <fragment
+            android:id="@+id/nav_playVideo"
+            android:name="com.example.englishtraining.ui.Playvideo.PlayVideoFragment"
+            android:label="PlayVideo"
+            tools:layout="@layout/fragment_play_video"/>
+
+
+
 </navigation>
