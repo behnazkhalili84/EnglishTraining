@@ -1,6 +1,7 @@
 package com.example.englishtraining.ui.resultreport
 
 import android.app.Application
+import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
@@ -13,4 +14,10 @@ class ResultReportViewModel(application: Application, private val userViewModel:
     val userId = securePreferencesHelper.getUserId()
 
     val allQuizResults: LiveData<List<QuizResult>> = userViewModel.quizResultDao.getAllResults(userId)
+    init {
+        Log.d("ResultReportViewModel", "UserId: $userId")
+        allQuizResults.observeForever {
+            Log.d("ResultReportViewModel", "All quiz results changed: $it")
+        }
+    }
 }
