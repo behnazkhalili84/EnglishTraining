@@ -35,5 +35,6 @@
     <string name="SignOut">Sign Out</string>
     <string name="learning_alphabet">Learning Alphabet</string>
     <string name="quiz_report">Quiz Report</string>
+    <string name="videos">Videos</string>
 
 </resources>
