@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.awardLayout.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_awardFragment)
+            findNavController().navigate(R.id.action_dashboardFragment_to_videoFragment)
         }
 
         binding.calendarLayout.setOnClickListener {

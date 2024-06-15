@@ -24,8 +24,8 @@
                 android:id="@+id/action_dashboardFragment_to_grammarQuizFragment"
                 app:destination="@id/nav_grammarquiz" />
         <action
-                android:id="@+id/action_dashboardFragment_to_awardFragment"
-                app:destination="@id/nav_vocabularyresult"/>
+                android:id="@+id/action_dashboardFragment_to_videoFragment"
+                app:destination="@id/nav_playVideo"/>
     </fragment>
 
     <fragment
@@ -47,6 +47,7 @@
         <action
                 android:id="@+id/action_vocabularyQuiz_to_resultVocabulary"
                 app:destination="@id/nav_vocabularyresult" />
+
     </fragment>
 
     <fragment
