@@ -121,6 +121,7 @@ class GrammarQuiz: Fragment() {
             isAnswerSubmitted = false
             viewModel.setQuestion((viewModel.currentPosition.value ?: 0) + 1)
             btnSubmit.text = "SUBMIT"
+            resetSelectedOption()
         }
     }
 
@@ -134,6 +135,9 @@ class GrammarQuiz: Fragment() {
             4 -> tvOptionFour.background = resources.getDrawable(drawableView, null)
             else -> Log.e("VocabularyQuiz", "Invalid answer: $answer")
         }
+    }
+    private fun resetSelectedOption() {
+        selectedOptionPosition = 0
     }
 
     private fun setQuestion(position: Int) {
