@@ -12,6 +12,7 @@
                 android:layout_height="match_parent"
                 android:padding="16dp">
 
+
         <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,12 +30,12 @@
                     android:orientation="vertical"
                     android:gravity="center"
                     android:background="@android:color/holo_blue_light"
-                    android:padding="16dp">
+                    android:padding="16dp" android:layout_row="0" android:layout_column="0">
 
                 <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_vocabulary" />
+                        android:src="@drawable/ic_vocabulary"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -42,9 +43,8 @@
                         android:layout_marginTop="8dp"
                         android:text="Vocabulary"
                         android:textSize="16sp"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"/>
             </LinearLayout>
-
             <LinearLayout
                     android:id="@+id/grammarLayout"
                     android:layout_width="0dp"

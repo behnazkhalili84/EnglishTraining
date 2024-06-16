@@ -8,7 +8,7 @@
     <fragment
             android:id="@+id/nav_home"
             android:name="com.example.englishtraining.ui.home.HomeFragment"
-            android:label="@string/menu_home"
+            android:label="@string/littlelingo"
             tools:layout="@layout/fragment_home">
 
         <action
