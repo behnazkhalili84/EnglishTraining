@@ -7,26 +7,26 @@
         <item
                 android:id="@+id/nav_home"
                 android:icon="@drawable/ic_home_64"
-                android:title="@string/menu_home"/>
+                android:title="@string/littlelingo1"/>
         <item
                 android:id="@+id/nav_learningVocab"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/education_24"
                 android:title="@string/learning_vocabulary"/>
         <item
                 android:id="@+id/nav_learningGrammar"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/education_24"
                 android:title="@string/leaning_grammar"/>
         <item
                 android:id="@+id/nav_vocabulayquiz"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/quiz_24"
                 android:title="@string/vocabulary_quiz"/>
         <item
                 android:id="@+id/nav_grammarquiz"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/quiz_24"
                 android:title="@string/grammar_quiz"/>
         <item
                 android:id="@+id/nav_quizVocabRep"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/document_24"
                 android:title="@string/quiz_report"/>
 
         <item

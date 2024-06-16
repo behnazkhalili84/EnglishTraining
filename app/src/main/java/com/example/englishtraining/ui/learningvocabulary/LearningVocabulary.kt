@@ -68,7 +68,6 @@ private lateinit var viewModel: VocabularyViewModel
         tvProgress.text = "1/${progressBar.max}"
         progressBar.progress = 1
 
-
     }
 
     private fun setupObservers() {

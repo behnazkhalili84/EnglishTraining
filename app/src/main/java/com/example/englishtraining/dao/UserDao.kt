@@ -1,9 +1,6 @@
 package com.example.englishtraining.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface UserDao {
@@ -18,4 +15,7 @@ interface UserDao {
 
     @Update
     suspend fun update(user: User)
+
+    @Delete
+    suspend fun delete(user: User)
 }

@@ -12,6 +12,7 @@ import com.example.englishtraining.SecurePreferencesHelper
 import com.example.englishtraining.dao.User
 import com.example.englishtraining.dao.UserDao
 import com.example.englishtraining.dao.UserDatabase
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -89,5 +90,37 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
             }
         }
 
+    }
+
+    fun deleteAccount() {
+        viewModelScope.launch {
+            val userId = securePreferencesHelper.getUserId()
+            val currentUser = userDao.getUser(userId)
+            currentUser?.let {
+                userDao.delete(it)
+                securePreferencesHelper.clearUserId()
+                _user.postValue(null)
+            }
+        }
+    }
+
+    fun validateInput(userName: String, password: String, userNameInputLayout: TextInputLayout, passwordInputLayout: TextInputLayout): Boolean {
+        var isValid = true
+
+        if (userName.isEmpty() || !userName.matches(Regex("^[a-zA-Z]+$"))) {
+            userNameInputLayout.error = "Username must contain only letters"
+            isValid = false
+        } else {
+            userNameInputLayout.error = null
+        }
+
+        if (password.isEmpty() || password.length < 4 || !password.matches(Regex("^[a-zA-Z0-9.$]+$"))) {
+            passwordInputLayout.error = "Password must be at least 4 characters long and contain only letters, numbers, dots, and dollar signs"
+            isValid = false
+        } else {
+            passwordInputLayout.error = null
+        }
+
+        return isValid
     }
 }

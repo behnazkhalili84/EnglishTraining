@@ -2,8 +2,8 @@
     <string name="app_name">EnglishTraining</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">LittleLingo</string>
+    <string name="nav_header_subtitle">English learning Application</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -36,5 +36,7 @@
     <string name="learning_alphabet">Learning Alphabet</string>
     <string name="quiz_report">Quiz Report</string>
     <string name="videos">Videos</string>
+    <string name="littlelingo">LittleLingo</string>
+    <string name="littlelingo1">LittleLingo</string>
 
 </resources>
