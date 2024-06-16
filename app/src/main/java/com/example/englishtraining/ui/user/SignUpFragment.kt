@@ -47,6 +47,7 @@ class SignUpFragment: Fragment() {
         val userNameInputLayout = view.findViewById<TextInputLayout>(R.id.userNameInputLayout)
         val passwordInputLayout = view.findViewById<TextInputLayout>(R.id.passwordInputLayout)
 
+        // error message handling
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
