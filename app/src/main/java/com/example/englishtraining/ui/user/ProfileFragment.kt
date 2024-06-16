@@ -1,5 +1,6 @@
 package com.example.englishtraining.ui.user
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -89,7 +90,7 @@ class ProfileFragment: Fragment() {
                 Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show()
             }
         }
-
+        // cancel button
         cancelButton.setOnClickListener {
             // Observe user data from ViewModel
             userViewModel.user.observe(viewLifecycleOwner, Observer { user ->
@@ -101,6 +102,17 @@ class ProfileFragment: Fragment() {
             saveButton.visibility = View.GONE
             cancelButton.visibility = View.GONE
             editButton.visibility = View.VISIBLE
+        }
+
+        // Delete account button
+        val deleteAccountButton = view.findViewById<Button>(R.id.deleteAccountButton)
+
+        deleteAccountButton.setOnClickListener {
+            userViewModel.deleteAccount()
+            // Navigate to sign-in screen or close the app
+            val intent = Intent(activity, SignInFragment::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
 
         return view

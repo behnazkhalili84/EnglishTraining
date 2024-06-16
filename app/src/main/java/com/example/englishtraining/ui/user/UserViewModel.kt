@@ -90,4 +90,16 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
 
     }
+
+    fun deleteAccount() {
+        viewModelScope.launch {
+            val userId = securePreferencesHelper.getUserId()
+            val currentUser = userDao.getUser(userId)
+            currentUser?.let {
+                userDao.delete(it)
+                securePreferencesHelper.clearUserId()
+                _user.postValue(null)
+            }
+        }
+    }
 }
