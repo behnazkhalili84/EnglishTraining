@@ -3,6 +3,8 @@ package com.example.englishtraining.ui.user
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +18,7 @@ import com.example.englishtraining.MainActivity
 import com.example.englishtraining.R
 import com.example.englishtraining.UserActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputLayout
 
 class SignUpFragment: Fragment() {
     // getting userActivity reference to navigates between it's fragments
@@ -40,6 +43,24 @@ class SignUpFragment: Fragment() {
         val userNameEditText = view.findViewById<EditText>(R.id.UserName)
         val passwordEditText = view.findViewById<EditText>(R.id.password)
         val signUpButton = view.findViewById<Button>(R.id.signUpButton)
+        // from material design for better error handling
+        val userNameInputLayout = view.findViewById<TextInputLayout>(R.id.userNameInputLayout)
+        val passwordInputLayout = view.findViewById<TextInputLayout>(R.id.passwordInputLayout)
+
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val userName = userNameEditText.text.toString()
+                val password = passwordEditText.text.toString()
+                signUpButton.isEnabled = userViewModel.validateInput(userName, password, userNameInputLayout, passwordInputLayout)
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        }
+
+        userNameEditText.addTextChangedListener(textWatcher)
+        passwordEditText.addTextChangedListener(textWatcher)
 
         // Sign up button
         signUpButton.setOnClickListener {
