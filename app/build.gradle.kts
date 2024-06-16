@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation("junit:junit:4.13.1")
+    implementation("androidx.fragment:fragment-testing:1.8.0")
     testImplementation ("junit:junit:4.13.2")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation ("org.mockito:mockito-core:3.9.0")
