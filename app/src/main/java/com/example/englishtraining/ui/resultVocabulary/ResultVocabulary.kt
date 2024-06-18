@@ -16,9 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.englishtraining.MainActivity
 import com.example.englishtraining.R
 import com.example.englishtraining.SecurePreferencesHelper
-import com.example.englishtraining.dao.QuizRepository
 import com.example.englishtraining.dao.QuizResult
-import com.example.englishtraining.dao.QuizResultDao
 import com.example.englishtraining.ui.user.UserViewModel
 import com.example.englishtraining.ui.vocabularyquiz.Constants
 import kotlinx.coroutines.launch

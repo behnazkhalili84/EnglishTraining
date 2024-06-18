@@ -17,7 +17,6 @@ import com.example.englishtraining.MainActivity
 import com.example.englishtraining.R
 import com.example.englishtraining.SecurePreferencesHelper
 import com.example.englishtraining.dao.QuizResult
-import com.example.englishtraining.ui.resultVocabulary.ResultVocabulary
 import com.example.englishtraining.ui.user.UserViewModel
 import com.example.englishtraining.ui.vocabularyquiz.Constants
 import kotlinx.coroutines.launch

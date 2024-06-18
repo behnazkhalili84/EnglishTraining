@@ -31,5 +31,4 @@ class ConstantsTest {
         assertEquals(3, questionsList[0].correctAnswer)
     }
 
-    // Add similar tests for other questions if needed
 }
